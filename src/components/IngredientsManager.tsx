@@ -46,8 +46,6 @@ const IngredientsManager: React.FC = () => {
     try {
       setIsLoading(true);
       await userIngredientsAPI.add(selectedIngredients);
-
-      // Update user ingredients display
       const updatedIngredients = allIngredients.filter((ing) =>
         selectedIngredients.includes(ing.id)
       );

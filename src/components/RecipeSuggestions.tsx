@@ -27,7 +27,6 @@ const RecipeSuggestions: React.FC = () => {
       setIsLoading(true);
       setError("");
 
-      // Load both suggestions and user ingredients
       const [suggestionsData, userIngredientsData] = await Promise.all([
         recipesAPI.suggestByInventory(),
         userIngredientsAPI.get(),
@@ -93,7 +92,7 @@ const RecipeSuggestions: React.FC = () => {
             {(suggestions.suggestedRecipes || []).length > 0 ? (
               <div className="recipes-grid">
                 {(suggestions.suggestedRecipes || []).map(
-                  (suggestedRecipe, index) => (
+                  (suggestedRecipe) => (
                     <div
                       key={suggestedRecipe.recipe.id}
                       className="recipe-card"

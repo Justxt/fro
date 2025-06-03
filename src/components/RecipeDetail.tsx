@@ -44,7 +44,7 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({
     setEditForm({
       title: suggestedRecipe.recipe.title,
       description: suggestedRecipe.recipe.description,
-      steps: instructions?.instructions || [], // Use steps instead of instructions
+      steps: instructions?.instructions || [],
       difficulty: suggestedRecipe.recipe.difficulty,
     });
   };
