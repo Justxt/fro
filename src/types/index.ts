@@ -24,14 +24,14 @@ export interface AuthResponse {
   user: User;
 }
 
-// Ingredient Types
+// Ingredient
 export interface Ingredient {
   id: string;
   name: string;
   category?: string;
 }
 
-// Recipe Types
+// Recipe
 export interface Recipe {
   id: string;
   title: string;
@@ -73,11 +73,11 @@ export interface SuggestRecipesResponse {
   totalFoundRecipes: number;
 }
 
-// Edit Recipe Types
+// Edit Recipe
 export interface EditRecipeRequest {
   title?: string;
   description?: string;
-  steps?: string[]; // Changed from instructions to steps to match backend
+  steps?: string[];
   totalTime?: number;
   difficulty?: string;
 }

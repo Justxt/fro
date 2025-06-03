@@ -10,10 +10,8 @@ import type {
   EditRecipeRequest,
 } from "../types";
 
-// API Base URL - adjust this to match your backend URL
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://mvc-recipes-api.onrender.com";
 
-// Create axios instance with default config
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
@@ -21,7 +19,6 @@ const api = axios.create({
   },
 });
 
-// Request interceptor to add auth token
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("accessToken");
   if (token) {
@@ -30,7 +27,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Response interceptor to handle auth errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -43,7 +39,6 @@ api.interceptors.response.use(
   }
 );
 
-// Auth API calls
 export const authAPI = {
   login: async (data: LoginRequest): Promise<AuthResponse> => {
     const response: AxiosResponse<AuthResponse> = await api.post(
@@ -62,7 +57,6 @@ export const authAPI = {
   },
 };
 
-// Ingredients API calls
 export const ingredientsAPI = {
   getAll: async (): Promise<Ingredient[]> => {
     const response: AxiosResponse<Ingredient[]> = await api.get("/ingredients");
@@ -70,7 +64,6 @@ export const ingredientsAPI = {
   },
 };
 
-// User Ingredients API calls
 export const userIngredientsAPI = {
   get: async (): Promise<{ availableIngredients: Ingredient[] }> => {
     const response = await api.get("/users/ingredients");
@@ -82,7 +75,6 @@ export const userIngredientsAPI = {
   },
 };
 
-// Recipes API calls
 export const recipesAPI = {
   suggestByInventory: async (): Promise<SuggestRecipesResponse> => {
     const response: AxiosResponse<SuggestRecipesResponse> = await api.post(
@@ -101,18 +93,15 @@ export const recipesAPI = {
     recipeId: string,
     data: EditRecipeRequest
   ): Promise<Recipe> => {
-    // Transform the data to match UpdateRecipeDto structure
     const updateData = {
       title: data.title,
       description: data.description,
-      // Convert single totalTime back to separate times (split evenly if provided)
       preparationTimeMinutes: data.totalTime
         ? Math.floor(data.totalTime / 2)
         : undefined,
       cookingTimeMinutes: data.totalTime
         ? Math.ceil(data.totalTime / 2)
         : undefined,
-      // Use steps instead of instructions
       steps: data.steps,
     };
 
