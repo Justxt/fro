@@ -106,7 +106,7 @@ const RecipeSuggestions: React.FC = () => {
                           <div className="match-percentage">
                             <span className="percentage">
                               {Math.round(
-                                suggestedRecipe.matchPercentage * 100
+                                suggestedRecipe.matchPercentage
                               )}
                               % match
                             </span>

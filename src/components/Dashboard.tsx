@@ -12,7 +12,6 @@ const Dashboard: React.FC = () => {
     <div className="dashboard-container">
       <header className="dashboard-header">
         <div className="header-content">
-          {" "}
           <h1>App de Recetas</h1>
           <div className="user-info">
             <span>Hola, {user?.name}</span>

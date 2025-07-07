@@ -55,7 +55,6 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({
       await recipesAPI.editRecipe(suggestedRecipe.recipe.id, editForm);
       setIsEditing(false);
       setError("");
-      // Reload instructions to show updated version
       await loadInstructions();
     } catch (error: any) {
       setError("Error al guardar cambios de la receta");
@@ -235,7 +234,6 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({
             </div>
 
             <div className="form-group">
-              {" "}
               <div className="instructions-header">
                 <label>Instrucciones</label>
                 <button
